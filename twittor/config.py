@@ -22,8 +22,8 @@ class Config:
     MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.googlemail.com')
     MAIL_PORT = os.environ.get('MAIL_PORT', 587)
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 1)
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME', 'twittor.service')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD', 'A4328902b')
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME', 'email')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD', 'password')
     MAIL_SUBJECT_RESET_REQUEST = '[Twittor] Please Reset Your Password'
     MAIN_SUBJECT_USER_ACTIVATE = '[Twittor] Please Activate Your Account'
     
