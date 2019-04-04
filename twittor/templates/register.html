@@ -1,0 +1,46 @@
+{%extends "base.html"%}
+
+{%block content%}
+<div class = 'row'>
+    <div class = "text-center col-lg-4"></div>
+    <div class = "text-center col-lg-4">
+    <h1 class = "h3 mb-3 font-weight-normal"> Create New User</h1><br>
+    <form action = "" method = "post">
+        {{form.hidden_tag()}}
+        <p>
+            {{form.username.label}}<br>
+            {{form.username()}}<br>
+            {%for error in form.username.errors%}
+            <span style = "color:red;"> [{{error}}]</span>
+            {%endfor%}
+        </p>
+        <p>
+            {{form.email.label}}<br>
+            {{form.email()}}<br>
+            {%for error in form.email.errors%}
+            <span style = "color:red;">[{{error}}]</span>
+            {%endfor%}
+        </p>
+        <p>
+            {{form.password.label }}<br>
+            {{form.password()}}<br>
+            {%for error in form.password.errors%}
+            <span style="color:red;">[{{error}}]</span>
+            {%endfor%}
+        </p>
+        <p>
+            {{form.password2.label}}<br>
+            {{form.password2()}}<br>
+            {%for error in form.password2.errors%}
+            <span style="color:red;">[{{error}}]</span>
+            {%endfor%}
+        </p>
+        <p>
+            <botton class = "btn btn-lg btn-outline-primary" type = "submit">Resigter</botton>
+        </p>
+        <p class = "mt-5 mb-3 text-muted"> &copy; 2018-2019
+        </p>
+    </form>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,5 @@
+Dear {{username}},
+
+To confirm your email addresss and finish setting up your Twittor account, please click the following link:
+
+{{url_user_activate}}

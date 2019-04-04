@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "viewpoint" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    {% if title%}
+    <title>welcome to {{title}}
+    </title>
+    {% else %}
+    <title> welcome to Twittor</title>
+    {%endif%}
+</head>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+        <a class="my-0 mr-md-auto font-weight-normal" href = "{{url_for('index')}}">Twittor</a>
+        <nav class="my-2 my-md-0 mr-md-3">
+          <a class="p-2 text-dark" href= "{{url_for('explore')}}"> Explore </a> 
+        </nav>
+        {%if current_user.is_anonymous%}
+        <a class="btn btn-outline-primary" href = "{{url_for('login')}}" >Login</a>
+        {% else %}
+        <a class="btn btn-outline-primary" href = "{{url_for('logout')}}" > Logout</a>
+        {%endif%}
+</div>
+<body class= "text-center" style ="background-color:mintcream;">
+    <!--catch the flash message-->
+
+    {%with messages = get_flashed_messages()%}
+        {%if messages %}
+            <ul>
+                {%for message in messages%}
+                <li>{{message}}</li>
+                {%endfor%}
+            </ul>
+        {%endif%}
+    {%endwith%}
+
+
+    {%block content%}
+    
+    {%endblock%}
+</body>

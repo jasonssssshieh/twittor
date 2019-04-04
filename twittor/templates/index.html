@@ -1,0 +1,30 @@
+{%extends "base.html"%}
+
+{% block content %}
+    <h1>Welcome!  
+        <a href = "/{{current_user.username}}">{{current_user.username}}</a>
+    </h1>
+    <form action ="" method = "POST">
+        {{form.hidden_tag()}}
+        <p>
+            {{form.tweet.label}}
+            {{form.tweet(cols = 50,  row = 4)}}<br>
+            {%for error in form.tweet.errors%}
+            <span style="color: red;">[{{error}}]</span>
+            {%endfor%}
+        </p>
+        <p>
+            {{form.submit()}}
+        </p>
+    </form>
+
+    {% include '_tweets.html'%}
+
+    <!--下面这一段是用来显示我们需要的next page和prev page-->
+    {%if prev_url %}
+    <a href="{{prev_url}}">Prev Page  </a>
+    {%endif%}
+    {%if next_url%}
+    <a href="{{next_url}}">   Next Page</a>
+    {%endif%}
+{% endblock %}

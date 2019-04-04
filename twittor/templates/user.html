@@ -1,0 +1,61 @@
+{%extends "base.html"%}
+
+{% block content %}
+    <table class = "table-light">
+        <tr>
+            <td><img src = "{{user.avatar(150)}}"></td>
+            <td>
+                <p>
+                    <form action = "" method = "POST">
+                        {{user.username}}
+                        {%if user == current_user %}
+                            {% if current_user.is_activated != 1 %}
+                            <button id = "btn" class = "btn btn-warning" type = "submit" name = "request_button" value = "activate"> Activate</button>
+                            {%else%}
+                            <span class = "badge badge-success"> activated</span>
+                            {%endif%}
+                        {%endif%}
+                    </form>
+                </p>
+
+
+                <p>
+                    Follower(s): {{user.followers.count()}}  |  Following:{{user.followed.count()}}
+                </p>
+                <form action = "" method = "post">
+                    {%if user != current_user%}
+                        {%if current_user.is_following(user)%}
+                            <input class = "btn btn-outline-primary" type = "submit" name = "request_button" value = "Unfollow">
+                        {%else%}
+                            <input class = "btn btn-outline-primary" type = "submit" name = "request_button" value="Follow"> 
+                        {%endif%}
+                    {%endif%}
+                </form>
+
+                {%if user.about_me %}
+                    <p> About me: {{user.about_me}}</p>
+                {%else%}
+                    <p>About me: 这家伙很懒,什么也没有留下</p>
+                {%endif%}
+                
+                {%if user.create_time %}
+                    <p> Joined since {{user.create_time}}</p>
+                {%else%}
+                    <p>Joined since 1970-01-01</p>
+                {%endif%}
+                {%if user == current_user%}
+                    <p><a href = "{{url_for('edit_profile')}}"> Edit My Profile</a></p>
+                {%endif%}
+            </td>
+        </tr>
+    </table>
+    <!--这里的user是我们User Model的一个实例-->
+
+    {%include '_tweets.html'%}
+    {%if prev_url%}
+    <a href="{{prev_url}}">Prev Page </a>
+    {%endif%}
+    {%if next_url%}
+    <a href="{{next_url}}"> Next Page</a>
+    {%endif%}
+{% endblock %}
